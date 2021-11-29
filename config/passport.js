@@ -9,9 +9,8 @@ passport.use(new LocalStrategy({
 },(email, password, done) =>{
     Users.findOne({email}).then((user)=>{
         if (!user || !user.validatePassword(password)){
-            return done(null, false, {errors: {'Email veya paraola' : 'hatalı'}});
+            return done(null, false, {errors: {'Email or password' : 'is invalid'}});
         }
-
         return done(null, user);
     }).catch(done);
 }));
